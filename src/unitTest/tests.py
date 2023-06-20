@@ -46,7 +46,7 @@ class GameViewsetTestCase(TestCase):
 # Erreur
 
     def test_retrieve_game_error(self):
-        response = self.client.get(f'http://127.0.0.1:8000/api/game/5')
+        response = self.client.get(f'http://127.0.0.1:8000/api/game/5') # Missing data in bdd
         self.assertEqual(response.status_code, 301)
 
     def test_create_game_error(self):
@@ -60,17 +60,17 @@ class GameViewsetTestCase(TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_create_game_error_3(self):
-        data = {'name': 'New Game', 'editor': 'New Editor', 'nb_players': -2}  # nb_players string instead of integer
+        data = {'name': 'New Game', 'editor': 'New Editor', 'nb_players': -2}  # nb_players negatif
         response = self.client.post('http://127.0.0.1:8000/api/game/', data)
         self.assertEqual(response.status_code, 400)
 
     def test_update_game_error(self):
-        data = {'name': 'Updated Game 2', 'editor': 'Updated Editor 2', 'nb_players': 5} # Missing data
+        data = {'name': 'Updated Game 2', 'editor': 'Updated Editor 2', 'nb_players': 5} # Missing data in bdd
         response = self.client.put(f'http://127.0.0.1:8000/api/game/5', data)
         self.assertEqual(response.status_code, 301)
 
     def test_delete_game(self):
-        response = self.client.delete(f'http://127.0.0.1:8000/api/game/5/')
+        response = self.client.delete(f'http://127.0.0.1:8000/api/game/5/') # Missing data in bdd
         self.assertEqual(response.status_code, 404)
 
 
