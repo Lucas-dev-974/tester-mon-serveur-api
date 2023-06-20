@@ -15,3 +15,37 @@ Il est à noté que sur ces exercices les technologies seront impoisées mais la
 Backend : Python
 Framework : Django
 
+## Setup 
+Créer un environement virtuel:
+    
+    py -m venv .venv
+
+Lancer l'environement virutal:
+- Linux:
+
+        source .venv/bin/activate
+
+- Windows:
+
+        .venv/Script/activate.bat
+
+
+
+Installer les dépendances:
+
+    pip install -r requirements.txt
+
+Lancer les migrations
+
+    cd src
+    python manage.py makemigrations unitTest
+    python manage.py migrate
+
+Lancer le projet:
+
+    python manage.py runserver
+
+## Docker
+    docker-compose up
+
+Se rendre sur l'url http://localhost:8000
