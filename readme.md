@@ -49,3 +49,21 @@ Lancer le projet:
     docker-compose up
 
 Se rendre sur l'url http://localhost:8000
+
+## Test Unitaire
+    Py manage.py test
+
+## Endpoint
+**Game Endpoints :**
+
+**`GET /game/`** : Récupère la liste de toutes les jeux.
+
+**`POST /game/`** : Crée un nouveau.
+
+**`GET /game/{id}/`** : Récupère les détails d'un jeu.
+
+**`PUT /game/{id}/`** : Met à jour le ou les information d'un jeu.
+
+`PATCH /game/{id}/`** : Met à jour une information sur un jeu.
+
+`DELETE /game/{id}/`** : Supprime un jeu.

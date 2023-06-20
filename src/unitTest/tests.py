@@ -1,6 +1,8 @@
 from django.test import TestCase
 from rest_framework.test import APIClient
 from unitTest.models import Game
+from .views import send_notification
+from unittest.mock import patch
 
 class GameViewsetTestCase(TestCase):
     def setUp(self):
@@ -37,6 +39,14 @@ class GameViewsetTestCase(TestCase):
         self.assertEqual(Game.objects.get(id=self.game1.id).name, 'Updated Game')
         self.assertEqual(Game.objects.get(id=self.game1.id).editor, 'Updated Editor')
         self.assertEqual(Game.objects.get(id=self.game1.id).nb_players, 5)
+
+    def test_update_game_2(self):
+        data = {'nb_players': 6}
+        response = self.client.patch(f'http://127.0.0.1:8000/api/game/{self.game1.id}/', data)
+        self.assertEqual(response.status_code, 200)
+
+        self.assertEqual(Game.objects.get(id=self.game1.id).nb_players, 6)
+
 
     def test_delete_game(self):
         response = self.client.delete(f'http://127.0.0.1:8000/api/game/{self.game1.id}/')
@@ -77,7 +87,7 @@ class GameViewsetTestCase(TestCase):
     
 
 
-    
 
-    
-        
+class GameViewsetTestCaseMocked(TestCase):
+    print('voila')
+

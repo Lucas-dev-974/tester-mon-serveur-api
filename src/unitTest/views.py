@@ -11,3 +11,4 @@ from unitTest.serializers import GameSerializer
 class GameViewset(viewsets.ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
+
