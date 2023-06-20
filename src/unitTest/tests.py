@@ -1,6 +1,4 @@
 from django.test import TestCase
-
-from django.test import TestCase
 from rest_framework.test import APIClient
 from unitTest.models import Game
 
@@ -26,6 +24,7 @@ class GameViewsetTestCase(TestCase):
         data = {'name': 'New Game', 'editor': 'New Editor', 'nb_players': 3}
         response = self.client.post('http://127.0.0.1:8000/api/game/', data)
         self.assertEqual(response.status_code, 201)
+        print(response.data)
         self.assertEqual(Game.objects.count(), 3)
         self.assertEqual(Game.objects.last().name, 'New Game')
         self.assertEqual(Game.objects.last().editor, 'New Editor')
@@ -43,3 +42,34 @@ class GameViewsetTestCase(TestCase):
         response = self.client.delete(f'http://127.0.0.1:8000/api/game/{self.game1.id}/')
         self.assertEqual(response.status_code, 204)
         self.assertEqual(Game.objects.count(), 1)
+
+# Erreur
+
+    def test_retrieve_game_error(self):
+        response = self.client.get(f'http://127.0.0.1:8000/api/game/5')
+        self.assertEqual(response.status_code, 301)
+
+    def test_create_game_error(self):
+        data = {'name': 'New Game', 'editor': 'New Editor'}  # Missing 'nb_players' field
+        response = self.client.post('http://127.0.0.1:8000/api/game/', data)
+        self.assertEqual(response.status_code, 400)
+        
+    def test_create_game_error_2(self):
+        data = {'name': 'New Game', 'editor': 'New Editor', 'nb_players': "yuyuy"}  # nb_players string instead of integer
+        response = self.client.post('http://127.0.0.1:8000/api/game/', data)
+        self.assertEqual(response.status_code, 400)
+
+    def test_update_game_error(self):
+        data = {'name': 'Updated Game 2', 'editor': 'Updated Editor 2', 'nb_players': 5} # Missing data
+        response = self.client.put(f'http://127.0.0.1:8000/api/game/5', data)
+        self.assertEqual(response.status_code, 301)
+
+    def test_delete_game(self):
+        response = self.client.delete(f'http://127.0.0.1:8000/api/game/5/')
+        self.assertEqual(response.status_code, 404)
+
+
+    
+
+    
+        
