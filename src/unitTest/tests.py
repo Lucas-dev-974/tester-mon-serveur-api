@@ -59,6 +59,11 @@ class GameViewsetTestCase(TestCase):
         response = self.client.post('http://127.0.0.1:8000/api/game/', data)
         self.assertEqual(response.status_code, 400)
 
+    def test_create_game_error_3(self):
+        data = {'name': 'New Game', 'editor': 'New Editor', 'nb_players': -2}  # nb_players string instead of integer
+        response = self.client.post('http://127.0.0.1:8000/api/game/', data)
+        self.assertEqual(response.status_code, 400)
+
     def test_update_game_error(self):
         data = {'name': 'Updated Game 2', 'editor': 'Updated Editor 2', 'nb_players': 5} # Missing data
         response = self.client.put(f'http://127.0.0.1:8000/api/game/5', data)
@@ -67,6 +72,9 @@ class GameViewsetTestCase(TestCase):
     def test_delete_game(self):
         response = self.client.delete(f'http://127.0.0.1:8000/api/game/5/')
         self.assertEqual(response.status_code, 404)
+
+
+    
 
 
     
