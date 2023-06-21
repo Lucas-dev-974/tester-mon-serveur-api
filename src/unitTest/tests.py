@@ -84,10 +84,4 @@ class GameViewsetTestCase(TestCase):
         self.assertEqual(response.status_code, 404)
 
 
-    
-
-
-
-class GameViewsetTestCaseMocked(TestCase):
-    print('voila')
 
