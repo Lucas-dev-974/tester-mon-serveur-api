@@ -67,3 +67,6 @@ Se rendre sur l'url http://localhost:8000
 `PATCH /game/{id}/`** : Met à jour une information sur un jeu.
 
 `DELETE /game/{id}/`** : Supprime un jeu.
+
+
+Voir aussi: https://www.notion.so/Mes-premiers-tests-automatis-s-12dbe955f851433ba2d230e17470fc3a 
